@@ -42,6 +42,7 @@ if (isset($error['login'])) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<title>patient Login Page</title>
 </head>
 <body style="background-image : url(https://www.jeuneafrique.com/medias/2013/10/23/Hopital-cinquantenaire-RDC_dr-e1520589911830.jpg); background-repeat : no-repeat; background-size : cover;">
@@ -53,8 +54,7 @@ if (isset($error['login'])) {
 	 	<div class="col-md-12">
 	 		<div class="row">
 	 			<div class="col-md-3"></div>
-	 			<!-- <div class="card" style="width: 600px; height: 600px; border-radius: 20px; padding: 20px;"> -->
-	 			<div class="col-md-6 card my-5">
+	 			<div class="col-md-6 jumbotron my-5">
 	 				<img src="img/admin log2.jfif" class="col-md-12" style="height: 80px; width: 80px; align-content: center; text-align: center;">
 	 				<h5 class="text-center my-3"> patients Login</h5>
 	 				<div>
@@ -69,8 +69,8 @@ if (isset($error['login'])) {
 	 						<label>Password</label>
 	 						<input type="password" name="pass" class="form-control" autocomplete="off" placeholder="Password">
 	 					</div><br>
-	 					<input type="submit" name="login" class="btn btn-success" value="Login">
-	 					<p>i don't have an account <a href="apply.php">Apply today!!!</a></p>
+	 					<input type="submit" name="login" class="btn btn-primary" value="Login">
+	 					<p>i don't have an account <a href="account.php">create today!!!</a></p>
 	 					
 	 				</form>
 	 			</div>

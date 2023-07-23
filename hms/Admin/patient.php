@@ -11,6 +11,7 @@ session_start();
 	<title>All Patient </title>
 </head>
 <body>
+
 	<?php
 	include("../include/header.php");
 	include("../include/connection.php"); 
@@ -24,11 +25,20 @@ session_start();
 	 				include("sidenav.php");
 
 	 				 ?>
+
 	 			</div>
 	 			<div class="col-md-10">
+               <button id="downloadPDF" class="btn btn-primary" style="margin-right:30cm ;">print the list</button>
+                          <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+                          <script>
+                            document.getElementById('downloadPDF').addEventListener('click', function() {
+                              var element = document.getElementById('orderTable');
+                              html2pdf().from(element).save('patient_list.pdf');
+                            });
+                          </script>
 	 				<h5 class="text-center">All Patient</h5>
 	 				<?php 
-	 				$query="SELECT * FROM patient ORDER BY date_reg ASC ";
+	 				$query="SELECT * FROM patient ORDER BY date_reg DESC ";
 	 				$res=mysqli_query($connect,$query);
 
 	 				 $output = "";

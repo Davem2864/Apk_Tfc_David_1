@@ -38,7 +38,7 @@
           				  			<div class="table-responsive" id="orderTable">
           				  			 <table class="table table-striped">
           				  				<tr>
-          				  					<th class="text-center" colspan="2">Details</th>
+          				  					<th class="text-center" colspan="2">Invoice Details</th>
           				  				</tr>
           				  				<tr>
           				  					<td>Firstname</td>

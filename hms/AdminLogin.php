@@ -31,6 +31,7 @@ if (isset($_POST['login'])) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<title>Admin login page</title>
 </head>
 <body style="background-image: url(https://www.jeuneafrique.com/medias/2013/10/23/Hopital-cinquantenaire-RDC_dr-e1520589911830.jpg); background-repeat: no-repeat; background-size: cover;">
@@ -43,8 +44,8 @@ include("include/header.php");
 		<div class="row">
 			<div class="col-md-3"></div>
 			<!-- <div class="card" style="width: 600px; height: 400px; border-radius: 20px; align-content: center;"> -->
-				<div class="col-md-6 card" style="padding: 10px;">
-				<img src="img/admin log2.jfif" class="col-md-12" style="height: 80px; width: 80px; align-content: center; text-align: center;">
+				<div class="col-md-6 jumbotron" style="padding: 10px;">
+				<img src="img/admin log2.jfif" class="col-md-12" style="height: 80px; width: 90px; align-content: center; text-align: center;">
 					<form method="post">
 						<div class="alert alert-danger">
 							<<?php 
@@ -68,7 +69,7 @@ include("include/header.php");
 							<input type="password" name="pass" class="form-control" autocomplete="off" placeholder="PassWord">
 						</div>
 						<br>
- 						<input type="submit" name="login" class="btn btn-success" value="Login">
+ 						<input type="submit" name="login" class="btn btn-primary" value="Login">
 					</form>
 				</div>
 				<!-- </div> -->

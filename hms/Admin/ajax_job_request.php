@@ -1,6 +1,41 @@
+<<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title></title>
+</head>
+<body>
+   <style type="text/css">
+                  @media print {
+                            .no-print {
+                              display: none;
+                            }
+                          }
+               </style>
+      <button id="downloadPDF" class="btn btn-primary" style="margin-right:30cm ;">print the list</button>
+                          <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+                          <script>
+                            document.getElementById('downloadPDF').addEventListener('click', function() {
+                              var element = document.getElementById('orderTable');
+                              html2pdf().from(element).save('request_list.pdf');
+
+                              var element = document.getElementById('orderTable');
+                               var opt = {
+                                 margin: [0.5, 0.3],
+                                 filename: 'doctor_list.pdf',
+                                 image: { type: 'jpeg', quality: 0.98 },
+                                 html2canvas: { scale: 2 },
+                                 jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                               };
+                                html2pdf().from(element).set(opt).save();
+                            });
+                          </script>
+</body>
+</html>
 <?php 	
    include("../include/connection.php");
-   $query = ("SELECT * FROM doctors WHERE status='Pending' ORDER BY date_reg ASC ");
+   $query = ("SELECT * FROM doctors WHERE status='Pending' ORDER BY date_reg DESC ");
    $res = mysqli_query($connect,$query);
    $output = "";
    $output .= "
@@ -26,7 +61,7 @@
    <th>CV</th>
    <th>Username</th>
    <th>Date Registered</th> 
-   <th>Action</th>
+   <th class='no-print'>Action</th>
    </tr>
    ";
    if ( mysqli_num_rows($res) < 1) {

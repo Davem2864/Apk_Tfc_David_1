@@ -28,61 +28,62 @@ session_start();
        					<div class="row">
        						<div class="col-md-6">
        							<h5 class="text-center">All Admin</h5>
-       							<?php 
-                                 $ad = $_SESSION['Admin'];
-                                 $query = "SELECT * FROM admin WHERE Username !='$ad' ";
-                                 $res=mysqli_query($connect, $query);
-                                 $output = "
-                                     <table class='table table-bordered'>
-                                     <tr>
-       								<th>Id</th>
-       								<th>Admin</th>
-       								<th style='width : 10%;'>Action</th>
-       								<tr>
-                                 ";
-                                 if(mysqli_num_rows($res) < 1){
-                                 	$output .= "<tr><td> colspan ='3' class='text-center'>No New Admin</td></tr>";
-                                 }
-                                 while ($row = mysqli_fetch_array($res)) {
+                               <?php
+    $ad = $_SESSION['Admin'];
+    $query = "SELECT * FROM admin WHERE Username!='$ad' ";
+    $res = mysqli_query($connect, $query);
+    $output = "
+        <table class='table table-bordered'>
+            <tr>
+                <th>Id</th>
+                <th>Admin</th>
+                <th>role</th>
+                <th style='width : 10%;'>Action</th>
+            </tr>";
+    if (mysqli_num_rows($res) < 1) {
+        $output .= "<tr><td colspan ='4' class='text-center'>No New Admin</td></tr>";
+    }
+    while ($row = mysqli_fetch_array($res)) {
+        $id = $row['Id'];
+        $Username = $row['Username'];
+        $role = $row['role'];
+        $_SESSION['role'] = 'Admin';
+        if ($role == 'admin') {
+            
+            $output .= "
+                <tr>
+                    <td>$id</td>
+                    <td>$Username</td>
+                    <td>$role</td>";
+            if ($_SESSION['role'] == 'admin') {
+                $output .= "<td></td>";
+            } else {
+                $output .= "<td><a href='admin?id=$id'><button id='$id' class='btn btn-danger'>Remove</button></a></td>";
+            }
+            $output .= "</tr>";
+        } else {
+            $output .= "
+                <tr>
+                    <td>$id</td>
+                    <td>$Username</td>
+                    <td>$role</td>
+                    <td></td>
+                </tr>";
+        }
+    }
+    $output .= "</table>";
+    echo $output;
 
-                                 	$id=$row['Id'];
+    if (isset($_GET['id']) && $_SESSION['role'] != 'admin') {
+        $id = $_GET['id'];
+        $query = "DELETE FROM admin WHERE Id = '$id'";
+        mysqli_query($connect, $query);
+    }
+?>
 
-                                 	$Username = $row['Username'];
 
 
-                                 	$output .= "
-                                     <tr>
-       									<td>$id</td>
-       									<td>$Username</td>
-       									<td>
-       										<a href = 'admin?id=$id'><button id='$id' class='btn btn-danger'>Remove</button></a>
-       									</td></tr>
-                                 	";
-                                 	// code...
-                                 }
-                                 $output .= "
-                                  </tr>
-       							</table>
-                                 ";
-                                 echo $output;
-                                 if (isset($_GET['id'])) {
-                                 	$id = $_GET['id'];
-                                 	$query = "DELETE FROM admin WHERE Id = '$id'";
-                                 	mysqli_query($connect,$query);
-                                 }
-       							 
-                                   // Vérification si l'utilisateur est un administrateur
-                                   if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
-                                       // L'utilisateur est un administrateur, affichage du bouton de suppression
-                                       echo "<tr>
-                                           <td>$id</td>
-                                           <td>$Username</td>
-                                           <td>
-                                               <a href='admin?id=$id'><button id='$id' class='btn btn-danger'>Remove</button></a>
-                                           </td>
-                                       </tr>";
-                                   }
-                                   ?>
+
                                </div>
        						<div class="col-md-6">
                              <?php 
@@ -106,11 +107,11 @@ session_start();
                                                 $query = "SELECT * FROM admin WHERE Username='$uname'";
                                                 $result = mysqli_query($connect, $query);
                                                 if(mysqli_num_rows($result) > 0) {
-                                                $error['u'] = "This email already exists";
+                                                $error['u'] = "This admin already exists";
                                                 }
 
                                             if(count($error)==0){
-                                                $q="INSERT INTO admin (Username,Password,Profile) VALUES ('$uname','$pass','$image')";
+                                                $q="INSERT INTO admin (Username,Password,Profile,role) VALUES ('$uname','$pass','$image','admin')";
                                                 $result = mysqli_query($connect,$q);
                                                 if($result){
                                                     move_uploaded_file($_FILES['img']['tmp_name'], "img/$image");

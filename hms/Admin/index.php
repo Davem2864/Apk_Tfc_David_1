@@ -6,6 +6,7 @@ session_start();
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+   <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
 	<title> Admin Dashboard </title>
 </head>
 <body>
@@ -22,10 +23,10 @@ include("../include/connection.php");
      				 ?>
      			</div>
      			<div class="col-md-10">
-     			<h4 class="my-2">Admin DashBoard</h4>
-     				<div class="col-md-12 my-1">
+     			<h4 class="text-center my-2">Admin DashBoard</h4>
+     				<div class="col-md-12">
      					<div class="row">
-     						<div class="col-md-3 bg-success mx-3" style="height : 130px;">
+     						<div class="col-md-3 bg-success mx-3 my-3" style="height : 130px;">
      							<div class="col-md-12">
      								<div class="row">
      									<div class="col-md-8">
@@ -47,7 +48,7 @@ include("../include/connection.php");
      							</div>
      							
      						</div>
-     						<div class="col-md-3 bg-info mx-3" style="height : 130px;">
+     						<div class="col-md-3 bg-info mx-3 my-3" style="height : 130px;">
      								<div class="col-md-12">
      								<div class="row">
      									<div class="col-md-8">
@@ -68,7 +69,7 @@ include("../include/connection.php");
      								
      							</div>
      						</div>
-     						<div class="col-md-3 bg-warning mx-3" style="height : 130px;">
+     						<div class="col-md-3 bg-warning mx-3 my-3" style="height : 130px;">
      								<div class="col-md-12">
      								<div class="row">
      									<div class="col-md-8">
@@ -110,6 +111,7 @@ include("../include/connection.php");
      								
      							</div>
      						</div>
+                           
      						<div class="col-md-3 bg-warning mx-3 my-3" style="height : 130px;">
      								<div class="col-md-12">
      								<div class="row">
@@ -153,7 +155,24 @@ include("../include/connection.php");
      								
      							</div>
      						</div>
-     						
+                     <div class="col-md-3 bg-warning mx-3 my-3" style="height : 130px;">
+                           <div class="col-md-12">
+                           <div class="row">
+                              <div class="col-md-8">
+                                 <?php 
+                                 $ad = mysqli_query($connect,"SELECT * FROM doctors_report");
+                                 $num0 = mysqli_num_rows($ad);
+                                 ?>
+                                 <h5 class="my-2 text-white" style="font-size: 30px;"><?php echo $num0; ?></h5>
+                                 <h5 class="text-white">Total</h5>
+                                 <h5 class="text-white">Doctors Reports</h5>
+                                 
+                              </div>
+                              <div class="col-md-4">
+                                 <a href="doctor_report.php"><i class="fa fa-flag fa-3x my-4" style="color: white;"></i></a>
+                              </div>
+                              
+                           </div>
      					</div>
      					
      				</div>

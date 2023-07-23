@@ -76,8 +76,8 @@ session_start();
            <td> ".$row['username']." </td>
            <td> ".$row['email']." </td>
             <td> 
-               <a href='view.php?id=".$row['Id']." '><button class = 'btn btn-info'>View<button></a>
-            <td/>
+               <a href='view.php?id=".$row['Id']." '><button class = 'btn btn-info'>View</button></a>
+            </td>
          
       ";
    }

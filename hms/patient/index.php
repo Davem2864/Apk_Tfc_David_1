@@ -1,6 +1,5 @@
 <?php 
 session_start();
-error_reporting(0);
  ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +22,7 @@ error_reporting(0);
 	 				 ?>
 	 			</div>
 	 			<div class="col-md-10">
-	 				<h5 class="my-2">Patient Dashbord</h5>
+	 				<h5 class="my-2 text-center">Patient Dashbord</h5>
 	 				<div class="col-md-12">
 	 					<div class="row">
 	 						<div class="row">
@@ -46,8 +45,6 @@ error_reporting(0);
 	 								<div class="col-md-12">
 	 					    		  <div class="row">
 	 					    		  	<div class="col-md-8">
-	 					    		  		<h5 class="text-white my-2" style="font-size:30px;">0</h5>
-	 					    		  		<h5 class="text-white my-2">Total</h5>
 	 					    		  		<h5 class="text-white my-2">Book Appointment</h5>
 	 					    		  	</div>
 	 					    		  	<div class="col-md-4">
@@ -62,12 +59,36 @@ error_reporting(0);
 	 								<div class="col-md-12">
 	 					    		  <div class="row">
 	 					    		  	<div class="col-md-8">
-	 					    		  		<h5 class="text-white my-2" style="font-size:30px;">0</h5>
-	 					    		  		<h5 class="text-white my-2">Total</h5>
 	 					    		  		<h5 class="text-white my-2">My invoice</h5>
 	 					    		  	</div>
 	 					    		  	<div class="col-md-4">
-	 					    		  		<a href="#"><i class="fas fa-file-invoice-dollar fa-3x my-4" style="color:white;"></i></a>
+	 					    		  		<a href="invoice.php"><i class="fas fa-file-invoice-dollar fa-3x my-4" style="color:white;"></i></a>
+	 					    		  	</div>
+	 					    		  	
+	 					    		  </div> 
+	 					    			
+	 					    		</div>
+	 								
+	 							</div>
+	 							<div class="col-md-3 bg-danger mx-3 my-3" style="height: 150px;">
+	 								<div class="col-md-12">
+	 					    		  <div class="row">
+	 					    		  	<div class="col-md-8">
+	 					    		  		<?php 
+	 					    		  		$pat=$_SESSION['patient'];
+	 				                         $query="SELECT * FROM patient WHERE username='$pat' ";
+	 				                         $res=mysqli_query($connect,$query);
+	 				                         $row=mysqli_fetch_array($res);
+                                             $fname=$row['firstname'];
+	 				                         $querys = mysqli_query($connect,"SELECT * FROM appointment WHERE firstname='$fname'") or die(mysqli_error($connect));
+                                              $num = mysqli_num_rows($querys);
+                                             ?>
+	 					    		  		<h5 class="my-2 text-white" style="font-size: 30px;"><?php echo $num; ?></h5>
+                                            <h5 class="text-white">Total</h5>
+	 					    		  		<h5 class="text-white my-4">My Appointment</h5>
+	 					    		  	</div>
+	 					    		  	<div class="col-md-4">
+	 					    		  		<a href="my_appointment.php"><i class="fa-solid fa-circle-user fa-3x my-4" style="color:white;"></i></a>
 	 					    		  	</div>
 	 					    		  	
 	 					    		  </div> 

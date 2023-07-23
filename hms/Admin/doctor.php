@@ -27,8 +27,33 @@ session_start();
 	 			</div>
 	 			<div class="col-md-10">
 	 				<h5 class="text-center">All Doctors</h5>
+               <style type="text/css">
+                  @media print {
+                            .no-print {
+                              display: none;
+                            }
+                          }
+               </style>
+               <button id="downloadPDF" class="btn btn-primary" style="margin-right:30cm ;">print the list</button>
+                          <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+                          <script>
+                            document.getElementById('downloadPDF').addEventListener('click', function() {
+                              var element = document.getElementById('orderTable');
+                              html2pdf().from(element).save('doctor_list.pdf');
+
+                              var element = document.getElementById('orderTable');
+                               var opt = {
+                                 margin: [0.5, 0.3],
+                                 filename: 'doctor_list.pdf',
+                                 image: { type: 'jpeg', quality: 0.98 },
+                                 html2canvas: { scale: 2 },
+                                 jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                               };
+                                html2pdf().from(element).set(opt).save();
+                            });
+                          </script>
 	 				<?php 
-	 				$query="SELECT * FROM doctors WHERE status= 'Approved' ORDER BY date_reg ASC ";
+	 				$query="SELECT * FROM doctors WHERE status= 'Approved' ORDER BY date_reg DESC ";
 	 				$res=mysqli_query($connect,$query);
 
 	 				 $output = "";
@@ -52,7 +77,7 @@ session_start();
    <th>Gender</th>
    <th>Phone</th>
    <th>Country</th>
-   <th>CV</th>
+   <th class='no-print'>CV</th>
    <th>Username</th>
    <th>Salary</th>
    <th>Date Registered</th> 
@@ -75,7 +100,7 @@ session_start();
            <td> ".$row['gender']." </td>
            <td> ".$row['phone']." </td>
            <td> ".$row['contry']." </td>
-           <td> <a href='#' class='btn btn-success btn-sm' id='export'><i class='fas fa-table'></i>".$row['cv']." </a> </td>
+           <td> <a href='#' class='btn btn-primary btn-sm' id='export'><i class='fas fa-table'></i>".$row['cv']." </a> </td>
            <td> ".$row['username']." </td>
            <td> ".$row['salary']." </td>
            <td> ".$row['date_reg']." </td>
@@ -98,7 +123,7 @@ session_start();
 
 	 				 ?>
 	 			</div>
-	 			
+
 	 		</div>
 	 		
 	 	</div>

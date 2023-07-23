@@ -73,7 +73,7 @@
 	 								 	<input type="file" name="profile" class="form-control">
 	 								 </div>
 	 								 <br>
-	 								 <input type="submit" name="update" value="update" class="btn btn-success">
+	 								 <input type="submit" name="update" value="update" class="btn btn-primary">
 	 							</form>
 	 							<div class="table-responsive" id="orderTable">
 	 								<table class="table table-striped">
@@ -138,7 +138,7 @@
 	 								<br>
 	 								<input type="text" name="uname" class="form-control" autocomplete="off">
 	 								<br>
-	 								<input type="submit" name="change" class="btn btn-success" value="change username">
+	 								<input type="submit" name="change" class="btn btn-primary" value="change username">
 	 							</form>
 	 							<br>
 	 							<?php 
@@ -196,10 +196,58 @@
 	 									<input type="password" name="con_pass" class="form-control">
 	 								</div>
 	 								<br>
-	 								<input type="submit" name="update_pass" value="update password" class="btn btn-success">
+	 								<input type="submit" name="update_pass" value="update password" class="btn btn-primary">
 	 							</form>
 	 						</div>
-	 						
+	 						<?php
+session_start();
+// check if the doctor_id session variable is set
+if (isset($_SESSION['doctor'])) {
+    $doctor_id = $_SESSION['doctor'];
+    if(isset($_POST['submit'])) {
+        $file = $_FILES['file'];
+        $fileName = $_FILES['file']['name'];
+        $fileTmpName = $_FILES['file']['tmp_name'];
+        $fileSize = $_FILES['file']['size'];
+        $fileError = $_FILES['file']['error'];
+        $fileType = $_FILES['file']['type'];
+
+        $fileExt = explode('.', $fileName);
+        $fileActualExt = strtolower(end($fileExt));
+
+        if ($fileActualExt == "pdf") {
+            if ($fileError == 0) {
+                if ($fileSize < 1000000) {
+                    $fileNameNew = uniqid('', true).".".$fileActualExt;
+                    $fileDestination = 'cv/'.$fileNameNew;
+                    move_uploaded_file($fileTmpName, $fileDestination);
+                    // database connection
+                    include("../include/connection.php");
+                    // update the cv column in the doctors table with the file path
+                    $query = "UPDATE doctors SET cv='$fileDestination' WHERE id='$doctor_id'";
+                    mysqli_query($connect, $query);
+                } else {
+                    echo "Your file is too big!";
+                }
+            } else {
+                echo "There was an error uploading your file!";
+            }
+        } else {
+            echo "You cannot upload files of this type!";
+        }
+    }
+} else {
+    echo "Doctor ID not set";
+}
+?>
+                <div class="form-group">
+	               <form action="" method="POST" enctype="multipart/form-data">
+                   <input type="file" name="file" class="form-control"><br>
+                   <button type="submit" name="submit" class="btn btn-primary">Upload</button>
+               </form>
+
+               </div>
+
 	 					</div>
 	 					
 	 				</div>

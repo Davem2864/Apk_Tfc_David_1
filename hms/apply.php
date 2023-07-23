@@ -61,6 +61,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<title>Apply now!!!</title>
 </head>
 <body style="background-image : url(https://www.jeuneafrique.com/medias/2013/10/23/Hopital-cinquantenaire-RDC_dr-e1520589911830.jpg); background-repeat : no-repeat; background-size : cover;">
@@ -71,8 +72,7 @@
 	 	<div class="col-md-12">
 	 		<div class="row">
 	 			<div class="col-md-3"></div>
-	 			<!-- <div class="card" style="width: 600px; height: 850px; border-radius: 20px; align-content: right; margin-top: 10px; float: right; display: flex;"> -->
-	 			<div class="col-md-6 my-3 card " style="position: absolute; left: 30px;">
+	 			<div class="col-md-6 card card-fluid my-3">
 	 				<h5 class="text-center">Apply Now</h5>
 	 				<div>
 	 					<?php echo $show; ?>
@@ -80,23 +80,26 @@
 	 				<form method="post">
 	 					<div class="form-group">
 	 						<label>Firstname</label>
-	 						<input type="text" name="fname" class="form-control" autocomplete="off" placeholder="Firstname" value="<?php if (isset($_POST['fname'])) echo $_POST['fname'] ;?>">
+	 						<input type="text" name="fname" class="form-control form-control-lg" autocomplete="off" placeholder="Firstname" value="<?php if (isset($_POST['fname'])) echo $_POST['fname'] ;?>">
 	 					</div>
 	 					<div class="form-group">
 	 						<label>Surname</label>
-	 						<input type="text" name="sname" class="form-control" autocomplete="off" placeholder="Surname" value="<?php if (isset($_POST['sname'])) echo $_POST['sname'] ;?>">>
+	 						<input type="text" name="sname" class="form-control form-control-lg" autocomplete="off" placeholder="Surname" value="<?php if (isset($_POST['sname'])) echo $_POST['sname'] ;?>">>
 	 					</div>
 	 					<div class="form-group">
 	 						<label>Email</label>
-	 						<input type="email" name="email" class="form-control" autocomplete="off" placeholder="Email" value="<?php if (isset($_POST['email'])) echo $_POST['email'] ;?>">>
+	 						<input type="email" name="email" class="form-control form-control-lg" autocomplete="off" placeholder="Email" value="<?php if (isset($_POST['email'])) echo $_POST['email'] ;?>">>
 	 					</div>
 	 					<div class="form-group">
 	 						<label>Username</label>
-	 						<input type="text" name="uname" class="form-control" autocomplete="off" placeholder="Username">
+	 						<input type="text" name="uname" class="form-control form-control-lg" autocomplete="off" placeholder="Username">
 	 					</div>
+	 					
+	 				</form>
+	 				<form method="post" class="col-md-6">
 	 					<div class="form-group">
 	 						<label>Gender</label>
-	 						<select name="gender" class="form-control">
+	 						<select name="gender" class="form-control form-control-lg">
 	 							<option value="">select gender</option>
 	 							<option value="male">male</option>
 	 							<option value="female">female</option>
@@ -105,11 +108,11 @@
 	 					</div>
 	 					<div class="form-group">
 	 						<label>Phone number</label>
-	 						<input type="text" name="phone" class="form-control" autocomplete="off" placeholder="Phone number" value="<?php if (isset($_POST['phone'])) echo $_POST['phone'] ;?>">>
+	 						<input type="text" name="phone" class="form-control form-control-lg" autocomplete="off" placeholder="Phone number" value="<?php if (isset($_POST['phone'])) echo $_POST['phone'] ;?>">>
 	 					</div>
 	 					<div class="form-group">
 	 						<label>Country</label>
-	 						<select name="country" class="form-control">
+	 						<select name="country" class="form-control form-control-lg">
 	 							<option value="">select country</option>
 	 							<option value="Nigeria">Nigeria</option>
 	 							<option value="South_Africa">south_Africa</option>
@@ -123,13 +126,13 @@
 	 					</div>
 	 					<div class="form-group">
 	 						<label>Password</label>
-	 						<input type="password" name="pass" class="form-control" autocomplete="off" placeholder="PassWord">
+	 						<input type="password" name="pass" class="form-control form-control-lg" autocomplete="off" placeholder="PassWord">
 	 					</div>
 	 					<div class="form-group">
 	 						<label>Confirm password</label>
-	 						<input type="password" name="con_pass" class="form-control" autocomplete="off" placeholder="Confirm password">
+	 						<input type="password" name="con_pass" class="form-control form-control-lg" autocomplete="off" placeholder="Confirm password">
 	 					</div><br>
-	 					<input type="submit" name="apply" class="btn btn-success" value="Apply">
+	 					<input type="submit" name="apply" class="btn btn-primary" value="Apply">
 	 					<br>
 	 					<p> i alraedy have an account <a href="doctorlogin.php">click here</a> </p>
 	 				</form>

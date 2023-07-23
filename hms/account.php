@@ -62,10 +62,9 @@ if (isset($_POST['create'])) {
 	 			<div class="col-md-3">
 	 				
 	 			</div>
-	 			<!-- <div class="card" style="height: 800px; border-radius:25px; width:500px;padding: 20px; margin-top: 50px ; align-content: center;align-items: flex-start; "> -->
-	 			<div class="col-md-6 card card-fluid my-5">
+	 			<div class="col-md-6 card card-fluid my-3" style="margin-left:10cm;">
 	 				<h5 class="text-center text-info my-2">create account</h5>
-	 				<form method="post">
+	 				<form method="post" class="col-md-6">
 	 					<div class="form-group">
 	 						<label>Firstname</label>
 	 						<input type="text" name="fname" class="form-control" autocomplete="off" placeholder="Firstname">
@@ -86,6 +85,8 @@ if (isset($_POST['create'])) {
 	 						<label>Phone Number</label>
 	 						<input type="text" name="phone" class="form-control" autocomplete="off" placeholder="Phone Number">
 	 					</div>
+	 					<form method="post" class="col-md-6">
+	 						
 	 					<div class="form-group">
 	 						<label>Gender</label>
 	 						<select name="gender" class="form-control">
@@ -124,6 +125,7 @@ if (isset($_POST['create'])) {
 	 					<br>
 	 					<input type="submit" name="create" class="btn btn-success" value="Create account">
 	 					<p>i already have an account<a href="patientlogin.php"> click here </a></p>
+	 					</form>
 	 				</form>
 	 			</div>
 	 		<!-- </div> -->

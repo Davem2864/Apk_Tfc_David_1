@@ -22,9 +22,17 @@ session_start();
  	 			 ?>
  	 			</div>
  	 			<div class="col-md-10">
+               <button id="downloadPDF" class="btn btn-primary" style="margin-right:30cm ;">print the list</button>
+                          <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+                          <script>
+                            document.getElementById('downloadPDF').addEventListener('click', function() {
+                              var element = document.getElementById('orderTable');
+                              html2pdf().from(element).save('income.pdf');
+                            });
+                          </script>
  	 				<h5 class="text-center my-3">Total income</h5>
  	 				<?php
- 	 				$query="SELECT * FROM income";
+ 	 				$query="SELECT * FROM income ORDER BY date_discharge DESC";
  	 				$res=mysqli_query($connect,$query);
  	 				$output="   
 	 				 <div class='table-responsive' id='orderTable'>
@@ -53,11 +61,6 @@ session_start();
                              <td> ".$row['patient']." </td>
                              <td> ".$row['date_discharge']." </td>
                              <td> ".$row['amount_paid']." </td>
-                              <td> 
-                                 // <a href='viewreport.php?id=".$row['id']." '>
-                                 //  <button class = 'btn btn-info'>View Report<button>
-                                 // </a>
-                              <td/>
          
                             ";
                          }

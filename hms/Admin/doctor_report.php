@@ -30,12 +30,12 @@ session_start();
                           }
 	 				</style>
 	 				<button id="downloadPDF" class="btn btn-primary" style="margin-right:30cm ;">print the list</button>
-	 				<br>
                           <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
                           <script>
                             document.getElementById('downloadPDF').addEventListener('click', function() {
                               var element = document.getElementById('orderTable');
-                              html2pdf().from(element).save('report_list.pdf');
+                              html2pdf().from(element).save('doctor_list.pdf');
+
                               var element = document.getElementById('orderTable');
                                var opt = {
                                  margin: [0.5, 0.3],
@@ -45,11 +45,10 @@ session_start();
                                  jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
                                };
                                 html2pdf().from(element).set(opt).save();
-
                             });
                           </script>
 	 				<?php
-	 				$query="SELECT * FROM report ORDER BY date_send DESC";
+	 				$query="SELECT * FROM doctors_report ORDER BY date_send DESC";
 	 				$res=mysqli_query($connect,$query);
 	 				$output="";
 	 				$output.="   
@@ -61,13 +60,13 @@ session_start();
                      <th>Message</th>
                      <th>Username</th>
                      <th>Date Send</th>
-                     <th class='no-print'>Action</th>
+                    <th class='no-print'>Action</th> 
                      </tr>
                      ";
                      if ( mysqli_num_rows($res) < 1) {
                      	$output .="
                           <tr>
-                             <td colspan='10' class = 'text-center' >no job request yet.</td>
+                             <td colspan='10' class = 'text-center' >no doctor Report yet.</td>
                           </tr>
                                        	                  ";
                      }
@@ -80,7 +79,7 @@ session_start();
                              <td> ".$row['username']." </td>
                              <td> ".$row['date_send']." </td>
                               <td> 
-                                 <a href='viewreport.php?id=".$row['id']." '>
+                                 <a href='view_doctor_report.php?id=".$row['id']." '>
                                   <button class = 'btn btn-info'>View Report<button>
                                  </a>
                               <td/>
