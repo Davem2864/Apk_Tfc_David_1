@@ -24,8 +24,11 @@ session_start();
 	 			<div class="col-md-10">
 	 				<h5 class="text-center">Total Apointment</h5>
 	 				<?php
-	 				$query="SELECT * FROM appointment WHERE status ='Pending' ORDER BY appointment DESC";
+	 				$query="SELECT * FROM appointment WHERE status ='Pending' ORDER BY appointment_date DESC";
 	 				$res=mysqli_query($connect,$query);
+                    if (!$res) {
+                           die(mysqli_error($connect));
+                       }
 	 				$output="";
 	 				$output.="
                       <!DOCTYPE html>

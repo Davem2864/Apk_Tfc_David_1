@@ -19,18 +19,18 @@ include("include/header.php");
                <button class="btn btn-primary my-2"  style="width: 100%;height: 50px;">More Information</button>
            </a>
         </div>
-        <div class="col-md-4 mx-1 my-3 shadow"style="width=100%">
-           <img src="img/doctors.jfif"> 
+        <div class="col-md-4 mx-1 shadow">
+           <img src="img/doctors.jfif" width="330px" height="290px"> 
            <h5 class="text-center">we are employing doctors</h5>
            <a href="apply.php">
-               <button class="btn btn-primary"  style=";margin-left: 50px;">Apply Now</button>
+               <button class="btn btn-primary"  style="width: 100%;height: 50px;">Apply Now</button>
            </a>
         </div>
-        <div class="col-md-4 mx-1 my-1 shadow"style="width=100%"> 
+        <div class="col-md-4 mx-1 shadow"style="width=100%"> 
          <img src="img/OIP.jfif">  
          <h5 class="text-center">Create acount so that we can take good care of you.</h5>
            <a href="account.php">
-               <button class="btn btn-primary"  style=";margin-left: 50px;">Create acount</button>
+               <button class="btn btn-primary"  style="width: 100%;height: 50px;">Create acount</button>
            </a> 
         </div>
         
